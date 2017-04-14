@@ -26,6 +26,16 @@ class DataStore:
     def appendValue(self, key, value):
         self.__dataContainer[key] = value
 
+    # 在数据容器中删除数据
+    def delValue(self, key):
+        self.____dataContainer.pop(key)
+
     # 将数据转为http-json
     def HttpResponseDataTojson(self, data):
         return HttpResponse(json.dumps(data), content_type="application/json")
+
+    # 返回错误信息
+    def errorLog(self, data):
+        self.__dataContainer.clear()
+        self.__dataContainer['error'] = data
+        return HttpResponse(json.dumps(self.dataContainer()), content_type="application/json")
